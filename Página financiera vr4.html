@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Rincón Financiero</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <title>Calculadoras Financieras</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+        }
+        .checkbox-group {
+            margin-top: 20px;
+        }
+        .calculator {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            margin: 20px auto;
+            display: none;
+        }
+        .calculator.active {
+            display: block;
+        }
+        input[type="number"], button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            font-size: 18px;
+            font-weight: normal;
+ 	    text-align: justify;
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        /* Estilos para los anuncios */
+        .ad-space {
+            background-color: #f1f1f1; 
+            text-align: center; 
+            margin: 5px;
+            padding: 10px;
+        }
+        .left-ads, .right-ads {
+            position: fixed;
+            top: 0;
+            width: 150px;
+            height: 100%;
+        }
+        .left-ads {
+            left: 0;
+        }
+        .right-ads {
+            right: 0;
+        }
+        .bottom-ads {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+    header {
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1 {
+        font-family: 'Roboto Slab', serif;
+        font-size: 2.5em;
+        margin: 0;
+        background: -webkit-linear-gradient(45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+        vertical-align: middle;
+        height: 30px;
+        width: 30px;
+    }
+        .checkbox-item {
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+        h2 {
+        position: relative;
+        font-size: 2em;
+        z-index: 1;
+        overflow: hidden;
+        text-align: center;
+    }
+    .article-title {
+        position: relative;
+        font-size: 2em;
+        z-index: 1;
+        overflow: hidden;
+        text-align: center;
+    }
+    .article-title:before {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 50%;
+        width: 70%;
+        border-bottom: 4px solid #007BFF;
+        transform: translate(-50%);
+    }
+    .article-title:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        background: linear-gradient(to left, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    }
+    .article-title span {
+        padding: 0 15px;
+    }
+    .calculator-title {
+        font-size: 1.2em; /* Ajusta el tamaño de la fuente aquí */
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); /* Sombreado del texto */
+        padding: 10px; /* Espaciado interno */
+        border: 2px solid #007BFF; /* Borde */
+        border-radius: 10px; /* Esquinas redondeadas */
+    }
+    .calculator {
+        text-align: center; /* Añadir esta línea para centrar el título */
+ }
+        img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <h1><i class="fas fa-coins" style="background: -webkit-linear-gradient(45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB); -webkit-background-clip: text; color: transparent;"></i> El Rincón Financiero</h1>
+</header>
+<!-- Espacios para publicidad en la parte izquierda -->
+<div class="left-ads">
+    <div class="ad-space">
+        <!-- Insertar código de anuncio aquí -->
+        AD_CODE_HERE
+    </div>
+    <div class="ad-space">
+        <!-- Insertar código de anuncio aquí -->
+        AD_CODE_HERE
+    </div>
+    <!-- Agregar más divs para más anuncios según sea necesario -->
+</div>
+
+<!-- Espacios para publicidad en la parte derecha -->
+<div class="right-ads">
+    <div class="ad-space">
+        <!-- Insertar código de anuncio aquí -->
+        AD_CODE_HERE
+    </div>
+    <div class="ad-space">
+        <!-- Insertar código de anuncio aquí -->
+        AD_CODE_HERE
+    </div>
+    <!-- Agregar más divs para más anuncios según sea necesario -->
+</div>
+
+<!-- Contenido principal -->
+<div style="padding: 0 160px;"> <!-- Añadido padding para evitar superposición de contenido y anuncios -->
+ 
+<div class="menu">
+    <a href="#" onclick="showContent('interesSimple')">Interés Simple</a>
+    <a href="#" onclick="showContent('interesCompuesto')">Interés Compuesto</a>
+    <a href="#" onclick="showContent('otrosTemas')">Otros Temas</a>
+</div>
+<div class="content-area">
+<div id="interesSimple" class="content" style="display:none;">
+    <h2 class="article-title"><span>Interés Simple</span></h2>
+    <p>El interés simple es un concepto financiero que se utiliza para calcular el interés generado por un capital inicial o principal que es prestado o invertido durante un período de tiempo específico. A diferencia del interés compuesto, el interés simple se calcula solo sobre el monto principal, y no sobre el interés acumulado durante el período de la inversión o el préstamo.</p>
+    <p>La fórmula matemática que permite calcular el interés simple es bastante sencilla:</p>
+    <p>\[ I = P \cdot r \cdot t \]</p>
+    <p>Donde \( I \) es el interés, \( P \) es el capital principal o monto inicial, \( r \) es la tasa de interés en forma decimal, y \( t \) es el tiempo que el dinero está prestado o invertido, generalmente expresado en años.</p>
+    <p>Para ilustrar cómo funciona el interés simple, consideremos un ejemplo práctico. Supongamos que una persona invierte $1,000 a una tasa de interés del 5% anual durante 2 años. Aplicando la fórmula, el interés generado en 2 años es de $100, lo que hace que el monto total al final del período sea de $1,100.</p>
+    <h3>Gráfica de Interés Simple</h3>
+    <img src="C:\Users\micmora\OneDrive - Coope Ande\Escritorio\InteresSimple.png" alt="Gráfica de Interés Simple" width="400" height="200">
+    <p>La gráfica anterior ilustra este ejemplo. En el eje X se representa el tiempo en años, y en el eje Y se representa el monto en dólares. La línea discontinua muestra el capital inicial, mientras que la línea continua muestra cómo aumenta el capital con el interés simple a lo largo del tiempo. Como se puede observar, el capital inicial ($1,000) permanece constante, mientras que el monto total (capital + interés simple) aumenta linealmente con el tiempo, alcanzando un total de $1,100 al final de los 2 años.</p>
+    <p>En resumen, el interés simple es una herramienta financiera básica pero esencial para entender cómo funciona el costo del dinero en préstamos e inversiones a corto plazo.</p>
+    
+</div>
+    <div id="interesCompuesto" class="content" style="display:none;">
+        <!-- Aquí va el contenido de Interés Compuesto -->
+        <h2 class="article-title"><span>Interés Compuesto</span></h2>
+        <p>El interés compuesto es el interés que se calcula sobre el capital inicial y también sobre los intereses que se han acumulado en periodos anteriores.</p>
+    </div>
+    <div id="otrosTemas" class="content" style="display:none;">
+        <!-- Aquí va el contenido de Otros Temas -->
+    </div>
+</div>
+<h1>Calculadoras Financieras <i class="fas fa-calculator" style="vertical-align: middle;"></i></h1>
+    <div class="checkbox-group">
+    <div class="checkbox-item">
+        <input type="checkbox" id="loanCalculatorCheck" onclick="toggleCalculator('loanCalculator')">
+        <label for="loanCalculatorCheck">Calculadora de Préstamos</label>
+    </div>
+    <div class="checkbox-item">
+        <input type="checkbox" id="savingsCalculatorCheck" onclick="toggleCalculator('savingsCalculator')">
+        <label for="savingsCalculatorCheck">Calculadora de Ahorros</label>
+    </div>
+    <div class="checkbox-item">
+        <input type="checkbox" id="compoundInterestCalculatorCheck" onclick="toggleCalculator('compoundInterestCalculator')">
+        <label for="compoundInterestCalculatorCheck">Calculadora de Interés Compuesto</label>
+    </div>
+    <div class="checkbox-item">
+        <input type="checkbox" id="investmentCalculatorCheck" onclick="toggleCalculator('investmentCalculator')">
+        <label for="investmentCalculatorCheck">Calculadora de Inversión</label>
+    </div>
+    <div class="checkbox-item">
+        <input type="checkbox" id="irrCalculatorCheck" onclick="toggleCalculator('irrCalculator')">
+        <label for="irrCalculatorCheck">Calculadora de TIR</label>
+    </div>
+    <div class="checkbox-item">
+        <input type="checkbox" id="mortgageCalculatorCheck" onclick="toggleCalculator('mortgageCalculator')">
+        <label for="mortgageCalculatorCheck">Calculadora de Hipotecas</label>
+    </div>
+    <div class="checkbox-item">
+        <input type="checkbox" id="creditCardCalculatorCheck" onclick="toggleCalculator('creditCardCalculator')">
+        <label for="creditCardCalculatorCheck">Calculadora de Tarjeta de Crédito</label>
+    </div>
+    <div class="checkbox-item">
+        <input type="checkbox" id="retirementCalculatorCheck" onclick="toggleCalculator('retirementCalculator')">
+        <label for="retirementCalculatorCheck">Calculadora de Rentabilidad de la Jubilación</label>
+    </div>
+    <div class="checkbox-item">
+        <input type="checkbox" id="budgetCalculatorCheck" onclick="toggleCalculator('budgetCalculator')">
+        <label for="budgetCalculatorCheck">Calculadora de Presupuesto Personal</label>
+    </div>
+</div>
+
+
+    </div>
+    <div id="loanCalculator" class="calculator">
+        <h2 class="calculator-title">Calculadora de Préstamos</h2>
+        <label for="amount">Monto del préstamo:</label>
+        <input type="number" id="amount" placeholder="Ej. 10000">
+        <label for="interest">Tasa de interés (anual en %):</label>
+        <input type="number" id="interest" placeholder="Ej. 5">
+        <label for="years">Años:</label>
+        <input type="number" id="years" placeholder="Ej. 10">
+        <button onclick="calculateLoan()">Calcular</button>
+        <p id="output"></p>
+    </div>
+    <div id="savingsCalculator" class="calculator">
+        <h2 class="calculator-title">Calculadora de Ahorros</h2>
+        <label for="initialAmount">Monto inicial:</label>
+        <input type="number" id="initialAmount" placeholder="Ej. 1000">
+        <label for="regularContribution">Contribución regular:</label>
+        <input type="number" id="regularContribution" placeholder="Ej. 100">
+        <label for="interestRate">Tasa de interés (anual en %):</label>
+        <input type="number" id="interestRate" placeholder="Ej. 5">
+        <label for="savingsYears">Años:</label>
+        <input type="number" id="savingsYears" placeholder="Ej. 10">
+        <button onclick="calculateSavings()">Calcular</button>
+        <p id="savingsOutput"></p>
+    </div>
+<div id="compoundInterestCalculator" class="calculator">
+    <h2 class="calculator-title">Calculadora de Interés Compuesto</h2>
+    <label for="initialAmountCI">Monto inicial:</label>
+    <input type="number" id="initialAmountCI" placeholder="Ej. 1000">
+    <label for="interestRateCI">Tasa de interés (anual en %):</label>
+    <input type="number" id="interestRateCI" placeholder="Ej. 5">
+    <label for="compoundingFrequencyCI">Frecuencia de capitalización (veces al año):</label>
+    <input type="number" id="compoundingFrequencyCI" placeholder="Ej. 12">
+    <label for="yearsCI">Años:</label>
+    <input type="number" id="yearsCI" placeholder="Ej. 10">
+    <button onclick="calculateCompoundInterest()">Calcular</button>
+    <p id="compoundInterestOutput"></p>
+</div>
+<div id="investmentCalculator" class="calculator">
+    <h2 class="calculator-title">Calculadora de Inversión</h2>
+    <label for="investmentAmount">Monto de la inversión:</label>
+    <input type="number" id="investmentAmount" placeholder="Ej. 10000">
+    <label for="expectedReturnRate">Tasa de retorno esperada (anual en %):</label>
+    <input type="number" id="expectedReturnRate" placeholder="Ej. 8">
+    <label for="investmentYears">Plazo de la inversión (años):</label>
+    <input type="number" id="investmentYears" placeholder="Ej. 5">
+    <button onclick="calculateInvestment()">Calcular</button>
+    <p id="investmentOutput"></p>
+</div>
+<div id="irrCalculator" class="calculator">
+    <h2 class="calculator-title">Calculadora de TIR</h2>
+    <label for="cashFlows">Introduce los flujos de efectivo separados por comas:</label>
+    <input type="text" id="cashFlows" placeholder="Ej. -5000,2000,2000,2000,2000">
+    <button onclick="calculateIRR()">Calcular TIR</button>
+    <p id="irrOutput"></p>
+</div>
+
+<div id="mortgageCalculator" class="calculator">
+    <h2 class="calculator-title">Calculadora de Hipotecas</h2>
+    <label for="propertyPrice">Precio de la propiedad:</label>
+    <input type="number" id="propertyPrice" placeholder="Ej. 200000">
+    <label for="downPayment">Pago inicial:</label>
+    <input type="number" id="downPayment" placeholder="Ej. 40000">
+    <label for="interestRateMortgage">Tasa de interés (anual en %):</label>
+    <input type="number" id="interestRateMortgage" placeholder="Ej. 3">
+    <label for="loanTerm">Plazo del préstamo (años):</label>
+    <input type="number" id="loanTerm" placeholder="Ej. 30">
+    <button onclick="calculateMortgage()">Calcular</button>
+    <p id="mortgageOutput"></p>
+</div>
+
+<div id="creditCardCalculator" class="calculator">
+    <h2 class="calculator-title">Calculadora de Tarjeta de Crédito</h2>
+    <label for="currentBalance">Saldo actual:</label>
+    <input type="number" id="currentBalance" placeholder="Ej. 5000">
+    <label for="interestRateCreditCard">Tasa de interés (anual en %):</label>
+    <input type="number" id="interestRateCreditCard" placeholder="Ej. 20">
+    <label for="monthlyPayment">Pago mensual:</label>
+    <input type="number" id="monthlyPayment" placeholder="Ej. 200">
+    <button onclick="calculateCreditCard()">Calcular</button>
+    <div id="creditCardOutput"></div>
+</div>
+<div id="retirementCalculator" class="calculator">
+    <h2 class="calculator-title">Calculadora de Rentabilidad de la Jubilación</h2>
+    <label for="currentAge">Edad actual:</label>
+    <input type="number" id="currentAge" placeholder="Ej. 30">
+    <label for="retirementAge">Edad de jubilación:</label>
+    <input type="number" id="retirementAge" placeholder="Ej. 65">
+    <label for="lifeExpectancy">Expectativa de vida:</label>
+    <input type="number" id="lifeExpectancy" placeholder="Ej. 85">
+    <label for="currentSavings">Ahorros actuales:</label>
+    <input type="number" id="currentSavings" placeholder="Ej. 50000">
+    <label for="regularContributions">Contribuciones regulares:</label>
+    <input type="number" id="regularContributions" placeholder="Ej. 500">
+    <label for="expectedReturnRate">Tasa de retorno esperada (anual en %):</label>
+    <input type="number" id="expectedReturnRate" placeholder="Ej. 5">
+    <label for="expectedAnnualExpenses">Gastos anuales esperados durante la jubilación:</label>
+    <input type="number" id="expectedAnnualExpenses" placeholder="Ej. 25000">
+    <button onclick="calculateRetirement()">Calcular</button>
+    <div id="retirementOutput"></div>
+</div>
+<div id="budgetCalculator" class="calculator">
+    <h2 class="calculator-title">Calculadora de Presupuesto Personal</h2>
+    <label for="income">Ingresos:</label>
+    <input type="number" id="income" placeholder="Ej. 5000">
+    <label for="fixedExpenses">Gastos fijos:</label>
+    <input type="number" id="fixedExpenses" placeholder="Ej. 2000">
+    <label for="variableExpensesPercentage">Gastos variables (% de ingresos):</label>
+    <input type="number" id="variableExpensesPercentage" placeholder="Ej. 20">
+    <button onclick="calculateBudget()">Calcular</button>
+    <div id="budgetOutput"></div>
+</div>
+<!-- Espacios para publicidad en la parte inferior -->
+<div class="bottom-ads">
+    <div class="ad-space" style="display: inline-block; width: 30%;">
+        <!-- Insertar código de anuncio aquí -->
+        AD_CODE_HERE
+    </div>
+    <div class="ad-space" style="display: inline-block; width: 30%;">
+        <!-- Insertar código de anuncio aquí -->
+        AD_CODE_HERE
+    </div>
+    <div class="ad-space" style="display: inline-block; width: 30%;">
+        <!-- Insertar código de anuncio aquí -->
+        AD_CODE_HERE
+    </div>
+</div>
+
+    <script>
+        function toggleCalculator(calculatorId) {
+            var calculator = document.getElementById(calculatorId);
+            calculator.classList.toggle('active');
+        }
+
+        function calculateLoan() {
+            var amount = document.getElementById('amount').value;
+            var interest = document.getElementById('interest').value;
+            var years = document.getElementById('years').value;
+
+            var principal = parseFloat(amount);
+            var calculateInterest = parseFloat(interest) / 100 / 12;
+            var calculatePayments = parseFloat(years) * 12;
+
+            var x = Math.pow(1 + calculateInterest, calculatePayments);
+            var monthlyPayment = (principal * x * calculateInterest) / (x - 1);
+
+            if (isFinite(monthlyPayment)) {
+                document.getElementById('output').textContent = 'Pago mensual: ' + monthlyPayment.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            } else {
+                document.getElementById('output').textContent = 'Por favor, ingresa valores válidos.';
+            }
+        }
+
+        function calculateSavings() {
+            var initialAmount = document.getElementById('initialAmount').value;
+            var regularContribution = document.getElementById('regularContribution').value;
+            var interestRate = document.getElementById('interestRate').value;
+            var savingsYears = document.getElementById('savingsYears').value;
+
+            var principal = parseFloat(initialAmount);
+            var monthlyContribution = parseFloat(regularContribution);
+            var calculateInterest = parseFloat(interestRate) / 100 / 12;
+            var calculateMonths = parseFloat(savingsYears) * 12;
+
+            var futureValue = principal;
+            for (var i = 0; i < calculateMonths; i++) {
+                futureValue = (futureValue + monthlyContribution) * (1 + calculateInterest);
+            }
+
+            if (isFinite(futureValue)) {
+                document.getElementById('savingsOutput').textContent = 'Valor futuro de los ahorros: ' + futureValue.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            } else {
+                document.getElementById('savingsOutput').textContent = 'Por favor, ingresa valores válidos.';
+            }
+        }
+	function calculateCompoundInterest() {
+        var initialAmount = document.getElementById('initialAmountCI').value;
+        var interestRate = document.getElementById('interestRateCI').value;
+        var compoundingFrequency = document.getElementById('compoundingFrequencyCI').value;
+        var years = document.getElementById('yearsCI').value;
+
+        var principal = parseFloat(initialAmount);
+        var calculateInterest = parseFloat(interestRate) / 100;
+        var n = parseFloat(compoundingFrequency);
+        var t = parseFloat(years);
+
+        var futureValue = principal * Math.pow((1 + calculateInterest / n), n * t);
+        var interestEarned = futureValue - principal;
+
+        if (isFinite(futureValue) && isFinite(interestEarned)) {
+            document.getElementById('compoundInterestOutput').textContent = 
+                'Valor futuro con interés compuesto: ' + futureValue.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) +
+                '\nInterés compuesto ganado: ' + interestEarned.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+        } else {
+            document.getElementById('compoundInterestOutput').textContent = 'Por favor, ingresa valores válidos.';
+        }
+    }
+    function calculateInvestment() {
+        var investmentAmount = document.getElementById('investmentAmount').value;
+        var expectedReturnRate = document.getElementById('expectedReturnRate').value;
+        var investmentYears = document.getElementById('investmentYears').value;
+
+        var principal = parseFloat(investmentAmount);
+        var calculateReturn = parseFloat(expectedReturnRate) / 100;
+        var years = parseFloat(investmentYears);
+
+        var futureValue = principal * Math.pow(1 + calculateReturn, years);
+        var totalReturn = futureValue - principal;
+
+        if (isFinite(futureValue) && isFinite(totalReturn)) {
+            document.getElementById('investmentOutput').textContent = 
+                'Valor futuro de la inversión: ' + futureValue.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) +
+                '\nRentabilidad total: ' + totalReturn.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+        } else {
+            document.getElementById('investmentOutput').textContent = 'Por favor, ingresa valores válidos.';
+        }
+    }
+ function calculateMortgage() {
+        var propertyPrice = document.getElementById('propertyPrice').value;
+        var downPayment = document.getElementById('downPayment').value;
+        var interestRate = document.getElementById('interestRateMortgage').value;
+        var loanTerm = document.getElementById('loanTerm').value;
+
+        var principal = parseFloat(propertyPrice) - parseFloat(downPayment);
+        var calculateInterest = parseFloat(interestRate) / 100 / 12;
+        var numberOfPayments = parseFloat(loanTerm) * 12;
+
+        var monthlyPayment = principal * (calculateInterest * Math.pow(1 + calculateInterest, numberOfPayments)) / (Math.pow(1 + calculateInterest, numberOfPayments) - 1);
+        var totalInterest = 0;
+
+        var output = '<p>Pago mensual de la hipoteca: ' + monthlyPayment.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }) + '</p>';
+
+        output += '<table border="1"><tr><th>Pago No.</th><th>Principal</th><th>Interés</th><th>Saldo Principal</th></tr>';
+        for (var i = 0; i < numberOfPayments; i++) {
+            var interestForTheMonth = principal * calculateInterest;
+            var principalForTheMonth = monthlyPayment - interestForTheMonth;
+            principal -= principalForTheMonth;
+            totalInterest += interestForTheMonth;
+
+            output += '<tr><td>' + (i + 1) + '</td>' +
+                '<td>' + principalForTheMonth.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) + '</td>' +
+                '<td>' + interestForTheMonth.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) + '</td>' +
+                '<td>' + principal.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) + '</td></tr>';
+        }
+        output += '</table>';
+        output += '<p>Total de intereses pagados: ' + totalInterest.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }) + '</p>';
+
+        document.getElementById('mortgageOutput').innerHTML = output;
+    }
+
+    function calculateIRR() {
+        var cashFlows = document.getElementById('cashFlows').value;
+        var cashFlowArray = cashFlows.split(',').map(Number);
+        
+        var irr = computeIRR(cashFlowArray);
+        
+        if (isFinite(irr)) {
+            document.getElementById('irrOutput').textContent = 
+                'TIR: ' + (irr * 100).toFixed(2) + '%';
+        } else {
+            document.getElementById('irrOutput').textContent = 'Por favor, ingresa valores válidos.';
+        }
+    }
+
+    function computeIRR(cashFlows, guess = 0.1) {
+        const maxIterations = 100;
+        const tolerance = 0.0001;
+        let irr = guess;
+
+        for (let i = 0; i < maxIterations; i++) {
+            let npv = 0;
+            for (let j = 0; j < cashFlows.length; j++) {
+                npv += cashFlows[j] / Math.pow(1 + irr, j);
+            }
+            if (Math.abs(npv) < tolerance) {
+                return irr;
+            }
+            irr -= npv / derivativeNPV(cashFlows, irr);
+        }
+        return null;
+    }
+
+    function derivativeNPV(cashFlows, irr) {
+        let dnpv = 0;
+        for (let i = 0; i < cashFlows.length; i++) {
+            dnpv += -i * cashFlows[i] / Math.pow(1 + irr, i + 1);
+        }
+        return dnpv;
+    }
+    function calculateCreditCard() {
+        var currentBalance = parseFloat(document.getElementById('currentBalance').value);
+        var interestRate = parseFloat(document.getElementById('interestRateCreditCard').value) / 100 / 12;
+        var monthlyPayment = parseFloat(document.getElementById('monthlyPayment').value);
+        
+        var months = 0;
+        var totalInterest = 0;
+
+        while (currentBalance > 0) {
+            var interest = currentBalance * interestRate;
+            var principal = monthlyPayment - interest;
+            if (principal > currentBalance) {
+                principal = currentBalance;
+            }
+            currentBalance -= principal;
+            totalInterest += interest;
+            months++;
+            if (months > 600) break; // to prevent infinite loop
+        }
+
+        var output = '<p>Tiempo para pagar el saldo completo: ' + months + ' meses</p>';
+        output += '<p>Total de intereses pagados: ' + totalInterest.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }) + '</p>';
+        
+        document.getElementById('creditCardOutput').innerHTML = output;
+    }
+function calculateRetirement() {
+        var currentAge = parseInt(document.getElementById('currentAge').value) || 0;
+        var retirementAge = parseInt(document.getElementById('retirementAge').value) || 0;
+        var lifeExpectancy = parseInt(document.getElementById('lifeExpectancy').value) || 0;
+        var currentSavings = parseFloat(document.getElementById('currentSavings').value) || 0;
+        var regularContributions = parseFloat(document.getElementById('regularContributions').value) || 0;
+        var expectedReturnRate = parseFloat(document.getElementById('expectedReturnRate').value) / 100 || 0;
+        var expectedAnnualExpenses = parseFloat(document.getElementById('expectedAnnualExpenses').value) || 0;
+
+        var yearsToRetirement = retirementAge - currentAge;
+        var totalSavings = currentSavings;
+
+        for (var i = 0; i < yearsToRetirement; i++) {
+            totalSavings += regularContributions;
+            totalSavings = totalSavings * (1 + expectedReturnRate);
+        }
+
+        var output = '<p>Ahorros totales al momento de la jubilación: ' + totalSavings.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }) + '</p>';
+
+        var isSufficient = totalSavings >= (expectedAnnualExpenses * (lifeExpectancy - retirementAge));
+
+        output += '<p>¿Son suficientes los ahorros para la jubilación? ' + (isSufficient ? 'Sí' : 'No') + '</p>';
+
+        document.getElementById('retirementOutput').innerHTML = output;
+    }
+ function calculateBudget() {
+        var income = parseFloat(document.getElementById('income').value) || 0;
+        var fixedExpenses = parseFloat(document.getElementById('fixedExpenses').value) || 0;
+        var variableExpensesPercentage = parseFloat(document.getElementById('variableExpensesPercentage').value) / 100 || 0;
+
+        var variableExpenses = income * variableExpensesPercentage;
+        var totalExpenses = fixedExpenses + variableExpenses;
+        var netBalance = income - totalExpenses;
+
+        var output = '<p>Saldo neto: ' + netBalance.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }) + '</p>';
+        output += '<p>Distribución porcentual de los gastos:</p>';
+        output += '<p>Gastos fijos: ' + ((fixedExpenses / totalExpenses) * 100).toFixed(2) + '%</p>';
+        output += '<p>Gastos variables: ' + ((variableExpenses / totalExpenses) * 100).toFixed(2) + '%</p>';
+
+        document.getElementById('budgetOutput').innerHTML = output;
+    }
+    function showContent(id) {
+        var contents = document.getElementsByClassName('content');
+        for (var i = 0; i < contents.length; i++) {
+            contents[i].style.display = 'none';
+        }
+        document.getElementById(id).style.display = 'block';
+    }    
+</script>
+        <div id="contador-visitas" style="position: fixed; bottom: 10px; right: 10px;">
+	<script type="text/javascript" src="https://www.counters-free.net/count/d2oe"></script><br>
+    </div>
+</script>
+</body>
+</html>
+
